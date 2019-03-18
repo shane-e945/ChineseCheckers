@@ -25,6 +25,20 @@ class ChessGame:
         numbers = '87654321'
         
         return '{}{}'.format(letters[column], numbers[row])
+    
+    @staticmethod 
+    def square_to_indices(square: str):
+        """Takes in chess notation of a square (two letters– e.g. "a8") and returns
+        c-style indices in a tuple"""
+        
+        col, row = square
+        
+        print(row, col)
+        
+        letters = 'abcdefgh'
+        numbers = '87654321'
+        
+        return numbers.index(row), letters.index(col)
         
     def make_move(self, old_position: str, new_position: str) -> bool:
         """Attempts to make a move on the board state, returns a bool
