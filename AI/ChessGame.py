@@ -33,8 +33,6 @@ class ChessGame:
         
         col, row = square
         
-        print(row, col)
-        
         letters = 'abcdefgh'
         numbers = '87654321'
         
