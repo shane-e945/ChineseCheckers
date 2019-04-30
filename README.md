@@ -1,5 +1,5 @@
 # ChessBot
-Adam, Sadler, and Shane's code for ChessBot– split into AI, Computer Vision, and Movement</br>
+Adam, Sadler, and Shane's code for ChineseCheckers– split into AI, Computer Vision, and Movement</br>
 
 Current Team Assignments:</br>
   <ul>
