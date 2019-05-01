@@ -2,16 +2,16 @@
 # specific color using OpenCV with Python 
 import cv2 
 import numpy as np
-import pyautogui
+
 import threading
 import time, sys
 
-BSIZE = 10 #how many pixels wide is a ball
+
 WIDTH = 0
 HEIGHT = 0
 VID = 0
 # Webcamera no 0 is used to capture the frames 
-cap = cv2.VideoCapture(0)
+cap = cv2.VideoCapture(1)
 
 
 
@@ -35,7 +35,7 @@ table = [0,
          ]
 
 # x, y
-space = 30
+space = 25
 srad = int(space/2)
 gap = 0
 sgap = int(space + gap)
@@ -65,7 +65,7 @@ pos = [(int(w/2),int(srad)),
        (int((w/2) - (0 * sgap)),int(16*space + srad))
        ]
 
-def c_check(): 
+def c_check():
     # This drives the program into an infinite loop. 
     # Captures the live stream frame-by-frame 
     rval, frame = cap.read()
@@ -85,10 +85,6 @@ def c_check():
 
     #masko = cv2.inRange(hsv, lower_o, upper_o)
     masko = cv2.inRange(frame, lower_o, upper_o)
-
-    pixel = hsv[300, 300]
-    print(pixel)
-    
  
     # The bitwise and of the frame and mask is done so  
     # that only the blue coloured objects are highlighted  
@@ -127,15 +123,14 @@ def c_check():
         counter = 0
         #try:
         if (crop_img[pos[i][1],pos[i][0]] != 0) or (crop_img[dot1] == 255) or (crop_img[dot2] == 255) or (crop_img[dot3] == 255) or (crop_img[dot4] == 255) or (crop_img[dot5] == 255) or (crop_img[dot6] == 255) or (crop_img[dot7] == 255) or (crop_img[dot8] == 255):
-            print("i is: %d" % i)
-            print("(%d, %d)" % (pos[i][0],pos[i][1]))
             print("%d is occupied." % i)
             cv2.circle(c_crop, pos[i], int(0.9*srad), (0,0,255), -1)
+            table[i] = 1
         else:
-            print("Nope %d" % i)
-        #except IndexError:
-            #print(i)
-            #print(pos[i])
+            table[i] = 0
+    #except IndexError:
+        #print(i)
+        #print(pos[i])
 ##            print(crop_img[pos[i]])
 ##            print(crop_img[dot1])
 ##            print(crop_img[dot2])
@@ -146,21 +141,21 @@ def c_check():
 ##            print(crop_img[dot7])
 ##            print(crop_img[dot8])
     cv2.imshow('dot', c_crop)
-    if (crop_img[int(space/2),int(w/2)] == 255):
-        print("Yes")
+    
     # This displays the frame, mask  
-    # and res which we created in 3 separate windows. 
+    # and res which we created in 3 separate windows.
+    return table
 
       
 def main():
+    rval, frame = cap.read()
+    WIDTH, HEIGHT, CHANNELS =frame.shape
     cv2.namedWindow("Image")
     while(1):
-        k = cv2.waitKey(1)
-        if (k == 119) or VID:
-            c_check()
-        elif (k == 113):
-            break
-
+        k = cv2.waitKey(0)
+        if (k == 13) or VID:
+            table = c_check()
+        
     # Destroys all of the HighGUI windows. 
     cv2.destroyAllWindows() 
     # release the captured frame 
