@@ -3,7 +3,8 @@ Adam, Sadler, and Shane's code for ChineseCheckers– split into AI, Computer Vi
 
 
   <ul>Individual Attributions:</br>
-    <li>Shane: AI, Website, Poster, GUI, and GitHub</li></br>
-    <li>Adam: Arm Movement, Hardware Implementations</li></br>
+    <li>Shane: AI, Website, Poster, GUI, and GitHub</li>
+    <li>Adam: Arm Movement, Hardware Implementations</li>
     <li>Sadler: Computer Vision</li>
+  </ul>
   
