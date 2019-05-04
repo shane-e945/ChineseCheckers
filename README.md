@@ -1,4 +1,4 @@
-# ChessBot
+# ChineseChecker Bot
 Adam, Sadler, and Shane's code for ChineseCheckers– split into AI, Computer Vision, and Movement</br>
 
 Current Team Assignments:</br>
